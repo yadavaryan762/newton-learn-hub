@@ -60,7 +60,7 @@ app.patch('/assignments/:id', async (req, res) => {
   }
 });
 
-// DELETE /assignments/:id - Delete an assignment
+// DELETE /assignments/:id - Delete an assignment (uses RETURNING * to get deleted row)
 app.delete('/assignments/:id', async (req, res) => {
   const { id } = req.params;
   try {
