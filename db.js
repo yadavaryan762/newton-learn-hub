@@ -1,7 +1,6 @@
 const { Pool, types } = require('pg');
 require('dotenv').config();
 
-// Return DATE columns as plain "YYYY-MM-DD" strings (not JS Date objects)
 types.setTypeParser(1082, (val) => val);
 
 const pool = new Pool({

@@ -7,7 +7,6 @@ app.use(express.json());
 
 const PORT = process.env.PORT || 3000;
 
-// POST /assignments - Create a new assignment
 app.post('/assignments', async (req, res) => {
   const { title, deadline } = req.body;
   try {
@@ -22,7 +21,6 @@ app.post('/assignments', async (req, res) => {
   }
 });
 
-// GET /assignments - Return all assignments newest first; filter by ?submitted=true|false
 app.get('/assignments', async (req, res) => {
   try {
     let result;
@@ -42,7 +40,6 @@ app.get('/assignments', async (req, res) => {
   }
 });
 
-// PATCH /assignments/:id - Mark an assignment as submitted
 app.patch('/assignments/:id', async (req, res) => {
   const { id } = req.params;
   try {
@@ -60,7 +57,6 @@ app.patch('/assignments/:id', async (req, res) => {
   }
 });
 
-// DELETE /assignments/:id - Delete an assignment (uses RETURNING * to get deleted row)
 app.delete('/assignments/:id', async (req, res) => {
   const { id } = req.params;
   try {
