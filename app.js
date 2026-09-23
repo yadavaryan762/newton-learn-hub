@@ -22,7 +22,7 @@ app.post('/assignments', async (req, res) => {
   }
 });
 
-// GET /assignments - Return all assignments (newest first), with optional ?submitted=true filter
+// GET /assignments - Return all assignments newest first; filter by ?submitted=true|false
 app.get('/assignments', async (req, res) => {
   try {
     let result;
