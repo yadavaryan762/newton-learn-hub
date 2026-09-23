@@ -22,6 +22,26 @@ app.post('/assignments', async (req, res) => {
   }
 });
 
+// GET /assignments - Return all assignments (newest first), with optional ?submitted=true filter
+app.get('/assignments', async (req, res) => {
+  try {
+    let result;
+    if (req.query.submitted !== undefined) {
+      const submittedVal = req.query.submitted === 'true';
+      result = await pool.query(
+        'SELECT * FROM assignments WHERE submitted = $1 ORDER BY id DESC',
+        [submittedVal]
+      );
+    } else {
+      result = await pool.query('SELECT * FROM assignments ORDER BY id DESC');
+    }
+    res.status(200).json(result.rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
